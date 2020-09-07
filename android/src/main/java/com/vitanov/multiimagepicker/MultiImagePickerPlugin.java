@@ -53,7 +53,7 @@ public class MultiImagePickerPlugin implements
         MethodCallHandler,
         PluginRegistry.ActivityResultListener {
 
-    private static final String CHANNEL_NAME = "multi_image_picker";
+    private static final String CHANNEL_NAME = "multi_image_picker_custom";
     private static final String REQUEST_THUMBNAIL = "requestThumbnail";
     private static final String REQUEST_ORIGINAL = "requestOriginal";
     private static final String REQUEST_METADATA = "requestMetadata";
@@ -144,7 +144,7 @@ public class MultiImagePickerPlugin implements
         protected void onPostExecute(ByteBuffer buffer) {
             super.onPostExecute(buffer);
             if (buffer != null) {
-                this.messenger.send("multi_image_picker/image/" + this.identifier + ".thumb", buffer);
+                this.messenger.send("multi_image_picker_custom/image/" + this.identifier + ".thumb", buffer);
                 buffer.clear();
             }
         }
@@ -197,7 +197,7 @@ public class MultiImagePickerPlugin implements
         @Override
         protected void onPostExecute(ByteBuffer buffer) {
             super.onPostExecute(buffer);
-            this.messenger.send("multi_image_picker/image/" + this.identifier + ".original", buffer);
+            this.messenger.send("multi_image_picker_custom/image/" + this.identifier + ".original", buffer);
             buffer.clear();
         }
     }

@@ -3,12 +3,12 @@ import 'dart:io' show Platform;
 
 import 'package:flutter/services.dart';
 import 'package:meta/meta.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
-import 'package:multi_image_picker/src/exceptions.dart';
+import 'package:multi_image_picker_custom/multi_image_picker.dart';
+import 'package:multi_image_picker_custom/src/exceptions.dart';
 
 class MultiImagePicker {
   static const MethodChannel _channel =
-      const MethodChannel('multi_image_picker');
+      const MethodChannel('multi_image_picker_custom');
 
   /// Invokes the multi image picker selector.
   ///

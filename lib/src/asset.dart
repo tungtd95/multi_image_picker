@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/services.dart';
-import 'package:multi_image_picker/multi_image_picker.dart';
+import 'package:multi_image_picker_custom/multi_image_picker.dart';
 
 class Asset {
   /// The resource identifier
@@ -25,7 +25,7 @@ class Asset {
 
   /// The BinaryChannel name this asset is listening on.
   String get _channel {
-    return 'multi_image_picker/image/$_identifier';
+    return 'multi_image_picker_custom/image/$_identifier';
   }
 
   String get _thumbChannel => '$_channel.thumb';

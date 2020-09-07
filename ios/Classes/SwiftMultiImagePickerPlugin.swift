@@ -39,7 +39,7 @@ public class SwiftMultiImagePickerPlugin: NSObject, FlutterPlugin {
     }
 
     public static func register(with registrar: FlutterPluginRegistrar) {
-        let channel = FlutterMethodChannel(name: "multi_image_picker", binaryMessenger: registrar.messenger())
+        let channel = FlutterMethodChannel(name: "multi_image_picker_custom", binaryMessenger: registrar.messenger())
 
         let app =  UIApplication.shared
         let rootController = app.delegate!.window!!.rootViewController
@@ -188,7 +188,7 @@ public class SwiftMultiImagePickerPlugin: NSObject, FlutterPlugin {
                     options: options,
                     resultHandler: {
                         (image: UIImage?, info) in
-                        self.messenger.send(onChannel: "multi_image_picker/image/" + identifier + ".thumb", message: image?.jpegData(compressionQuality: CGFloat(compressionQuality)))
+                        self.messenger.send(onChannel: "multi_image_picker_custom/image/" + identifier + ".thumb", message: image?.jpegData(compressionQuality: CGFloat(compressionQuality)))
                         })
 
                 if(PHInvalidImageRequestID != ID) {
@@ -222,7 +222,7 @@ public class SwiftMultiImagePickerPlugin: NSObject, FlutterPlugin {
                     options: options,
                     resultHandler: {
                         (image: UIImage?, info) in
-                        self.messenger.send(onChannel: "multi_image_picker/image/" + identifier + ".original", message: image!.jpegData(compressionQuality: CGFloat(compressionQuality)))
+                        self.messenger.send(onChannel: "multi_image_picker_custom/image/" + identifier + ".original", message: image!.jpegData(compressionQuality: CGFloat(compressionQuality)))
                 })
 
                 if(PHInvalidImageRequestID != ID) {
