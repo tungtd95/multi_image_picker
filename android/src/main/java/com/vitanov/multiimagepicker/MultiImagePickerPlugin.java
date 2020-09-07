@@ -440,7 +440,7 @@ public class MultiImagePickerPlugin implements
         return result;
     }
 
-    private HashMap<String, Object> getExif_str(ExifInterface exifInterface, String[] tags){
+    private HashMap<String, Object> getExif_str(ExifInterface exifInterface, String[] tags) {
         HashMap<String, Object> result = new HashMap<>();
         for (String tag : tags) {
             String attribute = exifInterface.getAttribute(tag);
@@ -451,7 +451,7 @@ public class MultiImagePickerPlugin implements
         return result;
     }
 
-    private HashMap<String, Object> getExif_double(ExifInterface exifInterface, String[] tags){
+    private HashMap<String, Object> getExif_double(ExifInterface exifInterface, String[] tags) {
         HashMap<String, Object> result = new HashMap<>();
         for (String tag : tags) {
             double attribute = exifInterface.getAttributeDouble(tag, 0.0);
@@ -476,7 +476,7 @@ public class MultiImagePickerPlugin implements
         String lightStatusBar = options.get("lightStatusBar");
         String actionBarTitle = options.get("actionBarTitle");
         String actionBarTitleColor = options.get("actionBarTitleColor");
-        String allViewTitle =  options.get("allViewTitle");
+        String allViewTitle = options.get("allViewTitle");
         String startInAllView = options.get("startInAllView");
         String useDetailsView = options.get("useDetailsView");
         String selectCircleStrokeColor = options.get("selectCircleStrokeColor");
@@ -564,6 +564,9 @@ public class MultiImagePickerPlugin implements
             List<Uri> photos = data.getParcelableArrayListExtra(Define.INTENT_PATH);
             List<HashMap<String, Object>> result = new ArrayList<>(photos.size());
             for (Uri uri : photos) {
+                if (uri == null) {
+                    continue;
+                }
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("identifier", uri.toString());
                 InputStream is = null;
@@ -712,7 +715,7 @@ public class MultiImagePickerPlugin implements
         } catch (Exception ignored) {
 
         }
-        return  rotationDegrees;
+        return rotationDegrees;
     }
 
     private static Bitmap getCorrectlyOrientedImage(Context context, Uri photoUri) throws IOException {
@@ -760,12 +763,12 @@ public class MultiImagePickerPlugin implements
 
         options.inJustDecodeBounds = false;
         options.inDither = false;
-        options.inSampleSize = calculateInSampleSize(options, width,height);
+        options.inSampleSize = calculateInSampleSize(options, width, height);
         options.inScaled = false;
         options.inPreferredConfig = Bitmap.Config.ARGB_8888;
 
         InputStream is2 = context.getContentResolver().openInputStream(photoUri);
-        Bitmap srcBitmap =  BitmapFactory.decodeStream(is2, null, options);
+        Bitmap srcBitmap = BitmapFactory.decodeStream(is2, null, options);
         if (is2 != null) {
             is2.close();
         }
