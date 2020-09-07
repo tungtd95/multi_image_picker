@@ -613,6 +613,9 @@ public class MultiImagePickerPlugin implements
             }
             List<HashMap<String, Object>> result = new ArrayList<>(photos.size());
             for (Uri uri : photos) {
+                if (uri == null) {
+                    continue;
+                }
                 HashMap<String, Object> map = new HashMap<>();
                 map.put("identifier", uri.toString());
                 InputStream is = null;
